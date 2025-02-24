@@ -1,0 +1,20 @@
+Interactive line graph
+
+import pandas as pd
+input_file = 'Bitcoin SV 2.csv'
+
+#Load the data
+data =pd.read_csv(input_file)
+
+#Analysing the dataset
+print(data.head())
+print(data.info())
+
+data=data.replace("{'waiting lists':}", regex = True)
+
+data.rename(columns={'VALUE' : 'Number'}, inplace = True)
+data = data.drop ("UNIT", axis=1)
+output_file = 'cleandata.csv'
+data.to_csv(output_file, index =False)
+
+print("Data has been cleaned! See here: ", output_file
